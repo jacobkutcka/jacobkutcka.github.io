@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Jacob Kutcka</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- <link rel="stylesheet" href="businessCard.css"> --> <!-- Kept outside for dev -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+  <style>
+
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: "montserrat", sans-serif;
+    box-sizing: border-box;
+    list-style: none;
+  }
+
+body, html{
+  height: 100%;
+  margin: 0;
+}
+
+  body{
+    background-color: black;
+    /*background: url(https://images.pexels.com/photos/2422970/pexels-photo-2422970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat;*/
+    background-size: cover;
+  }
+
+  .business-card{
+    width: 700px;
+    height: 392px;
+  }
+
+  .middle{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+
+  .front,.back{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 1s cubic-bezier(.63,-0.32,.4,1.39);
+  }
+
+  .front{
+    background: rgba(255,255,255,.85);
+    padding: 40px;
+    transform: perspective(600px) rotateX(180deg);
+  }
+
+  .front::before,.front::after{
+    content:"";
+    position: absolute;
+    right: 0;
+  }
+
+  .front::before{
+    background: #00194c;
+    width: 110px;
+    height: 155px;
+    bottom: 0;
+    clip-path:polygon(0 100%, 50% 0, 100% 100%);
+  }
+
+  .front::after{
+    background: #12254c;
+    width: 110px;
+    height: 100%;
+    bottom: 0;
+    clip-path:polygon(0 0,100% 0,100% 100%,80% 100%);
+  }
+
+  .front h1{
+    text-transform: uppercase;
+  }
+
+  .front span{
+    background: #33495e;
+    color: #fff;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .front .contact-information li{
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .front .contact-information li i{
+    width: 26px;
+    height: 26px;
+    background: #33495e;
+    color: #fff;
+    display: flex;    /*weird flex but ok*/
+    justify-content: center;
+    align-items: center;
+    margin-right: 6px;
+  }
+
+  .back{
+    background: rgba(0,0,0,.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    font-size: 20px;
+    transform: perspective(600px) rotateX(0deg);
+  }
+
+  #circle{
+    width: 310px;
+    height: 310px;
+    border-radius: 50%;
+    background-color: rgba(18,37,95);
+    border-width: thick;
+  }
+
+  #circle-in{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    border-width: thick;
+  }
+
+  .back h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 130px;
+    color: rgba(18,37,139);
+  }
+  .back h2{
+    width: 195px;
+    position: inherit;
+    font-size: 15px;
+    font-weight: 600px;
+    text-align: center;
+    color: rgb(17, 37, 139);
+    bottom: 55px;
+    letter-spacing: 3px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .back::before, .back::after{
+    content: "";
+    position: absolute;
+  }
+
+
+  .back::before{
+    background-color: rgb(17, 37, 139);
+    position: absolute;
+    top: 50%;
+    transform: translate(0%,-50%);
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    left: 0;
+    width: 50px;
+    height: 50px;
+  }
+
+  .back::after{
+    background-color: rgb(17, 37, 139);
+    position: absolute;
+    top: 50%;
+    transform: translate(0%,-50%);
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    right: 0;
+    width: 50px;
+    height: 50px;
+  }
+
+  .small{
+    font-size: 20px;
+    letter-spacing: 11px;
+  }
+
+  .big{
+    font-size: 40px;
+    letter-spacing: 7px;
+  }
+
+  .business-card-active .front{
+    transform: perspective(600px) rotateX(0deg);
+  }
+
+  .business-card-active .back{
+    transform: perspective(600px) rotateX(-180deg);
+    animation-timing-function: cubic-bezier(0.42,0,0.58,1);
+  }
+
+  .profile-picture{
+    float: right;
+    width: 150px;
+    border-radius: 50%;
+    margin-top: -50px;
+    margin-right: 100px;
+  }
+
+
+ .bg-image {
+   /* The image used */
+   background: url("https://images.pexels.com/photos/2422970/pexels-photo-2422970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+
+   /* Add the blur effect */
+   filter: blur(5px);
+   -webkit-filter: blur(5px);
+
+   /* Full height */
+   height: 100%;
+
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+ .note {
+   position: absolute;
+   top: 10%;
+   left: 50%;
+   transform: translate(-50%, 0);
+   white-space: nowrap;
+   font-size: 3.5vmin;
+   opacity: 0;
+   pointer-events: none;
+   animation: fadeInOut 4s;
+   animation-fill-mode: forwards;
+   color: white
+ }
+
+.side-triangle{
+  background: orange;
+  width: 110px;
+  height: 155px;
+  bottom: 0;
+  clip-path:polygon(0 100%, 50% 0, 100% 100%);
+}
+
+.side-triangle-active{
+  transform: perspective(600px) rotateY (-180deg);
+  animation-timing-function: cubic-bezier(0.42,0,0.58,1);
+}
+
+ @keyframes fadeInOut {
+   0% {
+     top: 0;
+     opacity: 0;
+   }
+   25%, 75% {
+     top: 10%;
+   }
+   75% {
+     opacity: 0.5;
+   }
+   100% {
+     top: 20%;
+     opacity: 0;
+   }
+ }
+
+</style>
+
+</head>
+<body>
+
+<div class="bg-image"></div>
+
+<div class="note">Click anywhere to flip</div>
+
+  <div class="business-card middle">
+    <div class="front">
+      <h1>Jacob Kutcka</h1>
+      <span>Graphic Design</span>
+      <img class="profile-picture" src="https://pbs.twimg.com/profile_images/1149056104229482497/Jkg8hdj7_400x400.png">
+      <ul class="contact-information">
+        <li>
+          <i class="fas fa-mobile-alt"></i> +1 (219) 776-0532
+        </li>
+        <li>
+          <i class="far fa-envelope"></i> kutcka@purdue.edu
+        </li>
+        <li>
+          <i class="fas fa-map-marker-alt"></i> Purdue Lafayette
+        </li>
+      </ul>
+      <div id="side-triangle"></div>
+    </div>
+    <div class="back">
+      <div id="circle">
+        <div id="circle-in">
+          <h1>JK</h1>
+          <h2>Graphic Design</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  $(".business-card").click(function(){
+    $(".business-card").toggleClass("business-card-active");
+  });
+  function copy() {
+    var copyText = document.getElementById
+  }
+  </script>
+  <script>
+  $(".side-triangle").click(function(){
+    $(".side-triangle").toggleClass(".side-triangle-active");
+  });
+  function copy() {
+    var copyText - document.getElementById
+  }
+  </script>
+  }
+  })
+</body>
+
+
+</html>
