@@ -25,8 +25,6 @@ body, html{
 
   body{
     background-color: black;
-    /*background: url(https://images.pexels.com/photos/2422970/pexels-photo-2422970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat;*/
-    background-size: cover;
   }
 
   .business-card{
@@ -223,7 +221,7 @@ body, html{
 
  .bg-image {
    /* The image used */
-   background: url("https://images.pexels.com/photos/2422970/pexels-photo-2422970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+   background: url("pexels-photo.jpeg") ;
 
    /* Add the blur effect */
    filter: blur(5px);
@@ -239,6 +237,7 @@ body, html{
  }
 
  .note {
+   /*little "click anywhere to flip" animation*/
    position: absolute;
    top: 10%;
    left: 50%;
@@ -251,19 +250,6 @@ body, html{
    animation-fill-mode: forwards;
    color: white
  }
-
-.side-triangle{
-  background: orange;
-  width: 110px;
-  height: 155px;
-  bottom: 0;
-  clip-path:polygon(0 100%, 50% 0, 100% 100%);
-}
-
-.side-triangle-active{
-  transform: perspective(600px) rotateY (-180deg);
-  animation-timing-function: cubic-bezier(0.42,0,0.58,1);
-}
 
  @keyframes fadeInOut {
    0% {
