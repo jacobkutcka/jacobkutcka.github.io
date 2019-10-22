@@ -1,20 +1,120 @@
 <!DOCTYPE html>
 <html>
-/*
-Dumbass Upload Notes:
-aight dipshit. U forgot how to upload ur shit... again.
-Easiest way to upload it to ur github page all at once is with this:
+<head>
+  <!---
+  use this to get statistics from the webpage
+  https://developers.google.com/analytics/solutions/google-analytics-spreadsheet-add-on
+-->
 
-$ git add --all
-$ git commit -m "#whatever the hell u want as ur notes. Keep it short#"
-$ git push origin master
+<style media="screen">
 
-honestly if u screw this amateur bs up, u don't deserve the webpage 
-*/
-  <head>
-    <meta http-equiv="Refresh" content="7; url=./20190725/index.html" />
-  </head>
-  <body>
-    <p>Please follow <a href="./20190725/index.html">this link</a>.</p>
-  </body>
+body{
+  margin:0;
+  padding:0;
+  font-family: "montserrat", sans-serif;}
+
+.bg-image{
+  background: url("windmill.jpg");
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  transform: rotate(180deg);
+}
+
+h1,h3{
+  color: grey;
+  text-shadow:
+  -2px -2px 0 white,
+  2px -2px 0 white,
+  -2px 2px 0 white,
+  2px 2px 0 white;
+}
+
+p{
+  color: #E2CDC5;
+}
+
+.container{
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
+
+.middle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container h1{
+  font-size: 140px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.container h3{
+  font-size: 80px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.link{
+  position: absolute;
+  bottom: 1%;
+  left: 5%;
+}
+
+.link p a{
+  text-decoration: none;
+  color: white;
+  background-color: green;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+</style>
+
+</head>
+
+<body>
+  <div class="bg-image"></div>
+    <div class="container middle">
+      <h3>Redirecting you in</h3>
+      <h1>
+        <span id="countdown">10</span>
+      </h1>
+      <h3>seconds</h3>
+    </div>
+    <div class="link">
+      <p>If not, please follow <a href="./20190725/index.html">this link</a></p>
+    </div>
+  <script type="text/javascript">
+
+  // Total seconds to wait
+  var seconds = 10;
+
+  function countdown() {
+    seconds = seconds - 1;
+    if (seconds < 0) {
+      // Change your redirection link here
+      window.location = "./20190725/index.html";
+    } else {
+      // Update remaining seconds
+      document.getElementById("countdown").innerHTML = seconds;
+      // Count down using javascript
+      window.setTimeout("countdown()", 1000);
+    }
+  }
+
+  // Run countdown function
+  countdown();
+
+  </script>
+
+</body>
 </html>
